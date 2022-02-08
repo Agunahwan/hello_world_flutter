@@ -1,3 +1,4 @@
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -5,6 +6,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  var faker = new Faker();
+
   final List<Widget> myList = List.generate(
     100,
     (index) => Text(
@@ -30,43 +33,41 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("List View"),
         ),
-        body: ListView(
-          children: myList,
+        body: ListView.builder(
+          itemCount: 100,
+          itemBuilder: (context, index) {
+            return ChatItem(
+              imageUrl: "https://picsum.photos/id/$index/200/300",
+              title: faker.person.name(),
+              subtitle: faker.lorem.sentence(),
+            );
+          },
         ),
-        // body: ListView.separated(
-        //   separatorBuilder: (context, index) {
-        //     return Divider(
-        //       color: Colors.black,
-        //     );
-        //   },
-        //   itemCount: myColor.length,
-        //   itemBuilder: (context, index) {
-        //     return Container(
-        //       height: 300,
-        //       width: 300,
-        //       color: myColor[index],
-        //     );
-        //   },
-        // ),
-        // body: Center(
-        //   child: Text(
-        //     "HALO",
-        //     textAlign: TextAlign.center,
-        //     style: TextStyle(
-        //       backgroundColor: Colors.amber,
-        //       color: Colors.white,
-        //       fontSize: 30,
-        //       fontWeight: FontWeight.bold,
-        //       letterSpacing: 3,
-        //       fontFamily: 'Stick',
-        //       decoration: TextDecoration.lineThrough,
-        //       decorationStyle: TextDecorationStyle.wavy,
-        //       decorationColor: Colors.white,
-        //       decorationThickness: 2,
-        //     ),
-        //   ),
-        // ),
       ),
+    );
+  }
+}
+
+class ChatItem extends StatelessWidget {
+  final String imageUrl;
+  final String title;
+  final String subtitle;
+
+  const ChatItem({
+    required this.imageUrl,
+    required this.title,
+    required this.subtitle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: CircleAvatar(
+        backgroundImage: NetworkImage(imageUrl),
+      ),
+      title: Text(title),
+      subtitle: Text(subtitle),
+      trailing: Text("10:00 PM"),
     );
   }
 }
