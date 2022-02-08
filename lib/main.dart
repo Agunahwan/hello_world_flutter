@@ -5,40 +5,49 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final List<Widget> myList = List.generate(
+    100,
+    (index) => Text(
+      "${index + 1}",
+      style: TextStyle(
+        fontSize: 20 + double.parse(index.toString()),
+      ),
+    ),
+  );
+
+  final List<Color> myColor = [
+    Colors.red,
+    Colors.green,
+    Colors.blue,
+    Colors.amber,
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Column"),
+          title: Text("List View"),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Container(
-              width: 200,
-              height: 50,
-              color: Colors.green,
-            ),
-            Container(
-              width: 50,
-              height: 50,
-              color: Colors.blue,
-            ),
-            Container(
-              width: 100,
-              height: 50,
-              color: Colors.amber,
-            ),
-            Container(
-              width: 300,
-              height: 50,
-              color: Colors.red,
-            ),
-          ],
+        body: ListView(
+          children: myList,
         ),
+        // body: ListView.separated(
+        //   separatorBuilder: (context, index) {
+        //     return Divider(
+        //       color: Colors.black,
+        //     );
+        //   },
+        //   itemCount: myColor.length,
+        //   itemBuilder: (context, index) {
+        //     return Container(
+        //       height: 300,
+        //       width: 300,
+        //       color: myColor[index],
+        //     );
+        //   },
+        // ),
         // body: Center(
         //   child: Text(
         //     "HALO",
