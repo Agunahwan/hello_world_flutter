@@ -1,0 +1,4 @@
+#Wed Feb 09 00:05:45 ICT 2022
+base.0=E\:\\My Data\\My Project\\Learning\\Flutter\\hello_world\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
