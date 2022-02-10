@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
             Text(
               counter.toString(),
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 50 + double.parse(counter.toString()),
               ),
             ),
             Row(
@@ -35,15 +35,19 @@ class _MyAppState extends State<MyApp> {
                 ElevatedButton(
                   onPressed: () {
                     if (counter != 1) {
-                      counter--;
-                      print(counter);
+                      setState(() {
+                        counter--;
+                      });
                     }
+                    print(counter);
                   },
                   child: Icon(Icons.remove),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    counter++;
+                    setState(() {
+                      counter++;
+                    });
                     print(counter);
                   },
                   child: Icon(Icons.add),
